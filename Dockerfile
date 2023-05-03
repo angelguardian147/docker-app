@@ -6,6 +6,7 @@ WORKDIR /usr/src/app
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
+USER angelguardian147@gmail.com:angelguardian147
 COPY --from=build package*.json ./
 
 RUN npm install --save express
