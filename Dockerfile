@@ -10,6 +10,9 @@ WORKDIR /usr/src/app
 RUN npm install --save express
 RUN npm i -S express
 
+RUN npm install --save mysql
+RUN npm i -S mysql
+
 # If you are building your code for production
 # RUN npm ci --omit=dev
 
