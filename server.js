@@ -1,16 +1,23 @@
 
-const mysql = require('mysql') //llamamos a mysql
 var express = require('express') //llamamos a Express
-var app = express()         
+var app = express()      
+var mysql = require('mysql');
 
+var connection = mysql.createConnection({
+  host: '3.133.123.17',
+  port: 33060,
+  user: 'root',
+  password: 'secret',
+  database: 'enterprise',
+  insecureAuth : true
+});   
 
-const pool = mysql.createPool({
-    host: 'ec2-3-133-123-17.us-east-2.compute.amazonaws.com',
-    port: '3306',
-    user: 'root',
-    password: 'secret',
-    database: 'enterprise'
-});
+connection.connect();
+
+// connection.connect(function(err){
+//   if(err) console.log(err.message);
+//   console.log('CONEXIÓN EXITOSA')
+// })
 
 var port = process.env.PORT || 8080  // establecemos nuestro puerto
 
@@ -22,24 +29,14 @@ app.get('/cervezas', function(req, res) {
   res.status(200).json({ mensaje: '¡A beber cerveza!' })  
 })
 
-async function getConnection(){
-  try{
-      const connection = await pool.getConnection();
-      return connection;
-  }catch(error){
-      console.log(error);
-  }
-}
-
-app.get('/api/categorias', async function (req, res) {
-  const connection = await getConnection();
-  console.log(connection);
-  const result = await connection.query('select 1+1', (error, results) => {
+app.get('/api/categorias', function (req, res, next) {
+  const query = 'select * from categorias';
+  connection.query(query, (error, results) => {
     if (error) {
       console.error(error);
       return res.status(500).json({ error: 'Database error' });
     }
-    return res.json(results);
+    return res.status(200).json(results);
   });
 })
 
