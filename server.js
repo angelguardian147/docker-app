@@ -15,7 +15,7 @@ const pool = mysql.createPool({
 var port = process.env.PORT || 8080  // establecemos nuestro puerto
 
 app.get('/', function(req, res) {
-  res.status(200).json({ mensaje: '¡Hola Mundo!' })   
+  res.status(200).json({ mensaje: '¡Hola Mundo 1!' })   
 })
 
 app.get('/cervezas', function(req, res) {
