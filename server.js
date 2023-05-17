@@ -4,8 +4,8 @@ var app = express()
 var mysql = require('mysql2');
 
 var connection = mysql.createConnection({
-  host: 'mysql-db',
-  port: 3306,
+  host: 'ec2-3-133-123-17.us-east-2.compute.amazonaws.com',
+  port: 33060,
   user: 'root',
   password: 'secret',
   database: 'enterprise',
@@ -60,9 +60,9 @@ app.get('/api/clientes', function (req, res){
 app.get('/api/productos/:id_prov/:id_cat', function (req, res){
   const query = `select * from productos 
                           where 
-                              id_categoria=${req.params('id_cat')} 
+                              id_categoria=${req.params.id_cat} 
                               and 
-                              id_proveedor=${req.params('id_prov')}`;
+                              id_proveedor=${req.params.id_prov}`;
   connection.query(query, (error, results) => {
     if(error){
       console.log(error);
