@@ -1,11 +1,11 @@
 
 var express = require('express') //llamamos a Express
 var app = express()      
-var mysql = require('mysql');
+var mysql = require('mysql2');
 
 var connection = mysql.createConnection({
-  host: 'mysql-db-2',
-  port: 3306,
+  host: 'mysql-db',
+  port: 33060,
   user: 'root',
   password: 'secret',
   database: 'enterprise',
