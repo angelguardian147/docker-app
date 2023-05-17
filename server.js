@@ -33,7 +33,8 @@ async function getConnection(){
 
 app.get('/api/categorias', async function (req, res) {
   const connection = await getConnection();
-  const result = await connection.query('select * from categorias', (error, results) => {
+  console.log(connection);
+  const result = await connection.query('select 1+1', (error, results) => {
     if (error) {
       console.error(error);
       return res.status(500).json({ error: 'Database error' });
