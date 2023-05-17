@@ -4,7 +4,7 @@ var app = express()
 var mysql = require('mysql2');
 
 var connection = mysql.createConnection({
-  host: 'ec2-3-133-123-17.us-east-2.compute.amazonaws.com',
+  host: 'mysql-db',
   port: 33060,
   user: 'root',
   password: 'secret',
@@ -63,6 +63,36 @@ app.get('/api/productos/:id_prov/:id_cat', function (req, res){
                               id_categoria=${req.params.id_cat} 
                               and 
                               id_proveedor=${req.params.id_prov}`;
+  connection.query(query, (error, results) => {
+    if(error){
+      console.log(error);
+      return res.status(500).json({ error: 'Database error' })
+    }
+    return res.status(200).json(results);
+  });
+})
+
+// optenemos la lista de facturas de la base de datos por cada id de cliente
+app.get('/api/facturas/:id_cliente', function (req, res){
+  const query = `select * from facturas 
+                          where 
+                              id_cliente=${req.params.id_cliente}`;
+  connection.query(query, (error, results) => {
+    if(error){
+      console.log(error);
+      return res.status(500).json({ error: 'Database error' })
+    }
+    return res.status(200).json(results);
+  });
+})
+
+// optenemos la lista de ventas de la base de datos por cada id de factura y producto
+app.get('/api/ventas/:id_fact/:id_prod', function (req, res){
+  const query = `select * from ventas 
+                          where 
+                              id_factura=${req.params.id_fact}
+                              and
+                              id_producto=${req.params.id_prod}`;
   connection.query(query, (error, results) => {
     if(error){
       console.log(error);
