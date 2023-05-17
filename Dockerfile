@@ -11,7 +11,7 @@ RUN npm install --save express
 RUN npm i -S express
 
 RUN npm install --save mysql
-RUN npm i -S mysql
+RUN npm i -S mysql2
 
 # If you are building your code for production
 # RUN npm ci --omit=dev
