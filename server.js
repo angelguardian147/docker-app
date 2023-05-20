@@ -1,19 +1,9 @@
 
 var express = require('express') //llamamos a Express
 var app = express()      
-var mysql = require('mysql2');
+var database = require('./database');
 
-var connection = mysql.createConnection({
-  host: 'mysql-db',
-  port: 3306,
-  user: 'root',
-  password: 'secret',
-  database: 'enterprise',
-  insecureAuth : true
-});   
-
-connection.connect();
-
+var connection = database.connection;
 var port = process.env.PORT || 8080  // establecemos nuestro puerto
 
 app.get('/', function(req, res) {
