@@ -20,4 +20,4 @@ RUN npm i -S mysql2
 COPY . .
 
 EXPOSE 8080
-CMD [ "node", "server.js", "database.js" ]
+CMD [ "node", "server.js" ]
