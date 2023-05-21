@@ -1,6 +1,8 @@
 
 var express = require('express') //llamamos a Express
 var routes = require('./modules/routes')
+var cors = require('cors')
+
 
 var app = express()      
 
@@ -11,5 +13,7 @@ app.get('/', function(req, res) {
 
 // RUTAS DE LOS MODULOS
 app.use('', routes)
+
+app.use(cors());
 
 module.exports = { app }
