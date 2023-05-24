@@ -6,9 +6,12 @@ var cors = require('cors')
 
 var app = express()      
 
+app.use(express.static('public'))
+app.use('/static', express.static('public'))
+
 // RUTA PRINCIPAL
 app.get('/', function(req, res) {
-  res.status(200).json({ mensaje: '¡Hola Mundo 2!' })   
+  res.status(200).sendFile(__dirname, '/index.html');
 })
 
 // RUTAS DE LOS MODULOS

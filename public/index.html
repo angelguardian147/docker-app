@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            min-height: 100vh;
+            background: #f2f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .body {
+            position: relative;
+            width: 25rem;
+            height: 30rem;
+            animation: walk 4s linear infinite;
+            transform: scale(0.2);
+        }
+
+        /* head */
+
+        .head {
+            position: absolute;
+            top: 6rem;
+            left: 5rem;
+            width: 16rem;
+            height: 12rem;
+            border-radius: 48%;
+            background: #000000;
+            animation: head_move 2s linear infinite;
+        }
+
+        .face {
+            position: absolute;
+            top: 2rem;
+            left: 1.5rem;
+            width: 13rem;
+            height: 9.5rem;
+            border-radius: 48%;
+            background: #ffdacf;
+        }
+
+        .eye {
+            position: absolute;
+            top: 3.5rem;
+            width: 2.7rem;
+            height: 2.7rem;
+            border-radius: 50%;
+            border: 0.6em solid #000000;
+            background: white;
+        }
+
+        .pupil {
+            position: absolute;
+            top: 0.8rem;
+            left: 0.7rem;
+            width: 1.1rem;
+            height: 1.1rem;
+            border-radius: 50%;
+            background: #000000;
+        }
+
+        .eye-left {
+            left: 0;
+        }
+
+        .eye-right {
+            right: 0;
+        }
+
+        .eyebrown {
+            position: absolute;
+            top: -3rem;
+            width: 1rem;
+            height: 5rem;
+            background: #000000;
+        }
+
+        .eye-tip {
+            position: absolute;
+            bottom: -0.5rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: #000000;
+        }
+
+        .eyebrown-left {
+            left: 0.5rem;
+            transform: rotate(-70deg);
+        }
+
+        .eyebrown-right {
+            right: 0.5rem;
+            transform: rotate(70deg);
+        }
+
+        .mouth {
+            position: absolute;
+            bottom: -0.5rem;
+            left: 1.3rem;
+            width: 9rem;
+            height: 2.5rem;
+        }
+
+        .smile {
+            position: absolute;
+            top: 0.5rem;
+            left: 3.5rem;
+            width: 3.6rem;
+            height: 0.6rem;
+            background: #000000;
+        }
+
+        /* 
+.smile-left{
+    left: 0.5rem;
+    transform: rotate(5deg);
+}
+
+.smile-right{
+    right: -0.8rem;
+    transform: rotate(-5deg);
+}
+
+.bord{
+    position: absolute;
+    width: 2rem;
+    height: 1.4rem;
+    background: white;
+    border: 0.5em solid #000000;
+}
+
+.bord-left{
+    left: -0.5rem;
+    border-radius: 0 0 0 90%;
+}
+
+.bord-right{
+    right: -0.5rem;
+    border-radius: 0 0 90% 0;
+}
+
+.tooth{
+    position: absolute;
+    width: 2rem;
+    height: 1.4rem;
+    background: white;
+    border: 0.5em solid #000000;
+}
+
+.tooth-left{
+    left: 2rem;
+}
+
+.tooth-right{
+    right: 2rem;
+} */
+
+        .hair {
+            position: absolute;
+            width: 5rem;
+            height: 6rem;
+        }
+
+        .hair__left {
+            top: -3rem;
+            left: -2rem;
+            transform: rotate(-53deg);
+        }
+
+        .hair__right {
+            top: -1.5rem;
+            right: -3.4rem;
+            transform: rotate(53deg);
+        }
+
+        .league {
+            position: absolute;
+            top: 3rem;
+            width: 1.4rem;
+            height: 2rem;
+            border-right: 0.6em solid transparent;
+            border-left: 0.6em solid transparent;
+            border-top: 3em solid #000000;
+        }
+
+        .rect-one {
+            position: absolute;
+            top: -1.4rem;
+            left: 0.2rem;
+            width: 0.7rem;
+            height: 0.5rem;
+            border-right: 0.1em solid transparent;
+            border-left: 0.2em solid transparent;
+            border-top: 0.6em solid rgb(221, 1, 1);
+        }
+
+        .rect-two {
+            position: absolute;
+            top: -2.5rem;
+            left: -0.1rem;
+            width: 1rem;
+            height: 0.5rem;
+            border-right: 0.2em solid transparent;
+            border-left: 0.3em solid transparent;
+            border-top: 0.8em solid rgb(221, 1, 1);
+        }
+
+        .tips_one {
+            position: absolute;
+            top: -2rem;
+            right: 0.6rem;
+            width: 0;
+            height: 2rem;
+            border-right: 1.5em solid transparent;
+            border-left: 0.9em solid transparent;
+            border-top: 3.5em solid #000000;
+            transform: rotate(220deg);
+        }
+
+        .tips_two {
+            position: absolute;
+            top: -2rem;
+            left: -2.7rem;
+            width: 0;
+            height: 2rem;
+            border-right: 1.5em solid transparent;
+            border-left: 0.9em solid transparent;
+            border-top: 3.5em solid #000000;
+            transform: rotate(-235deg);
+        }
+
+        .tips_three {
+            position: absolute;
+            top: -3rem;
+            left: -1.2rem;
+            width: 0;
+            height: 2rem;
+            border-right: 1.5em solid transparent;
+            border-left: 1em solid transparent;
+            border-top: 3.5em solid #000000;
+            transform: rotate(-200deg);
+        }
+
+        .tips_four {
+            position: absolute;
+            top: -3rem;
+            left: 0.8rem;
+            width: 0;
+            height: 2rem;
+            border-right: 1.5em solid transparent;
+            border-left: 1em solid transparent;
+            border-top: 3.5em solid #000000;
+            transform: rotate(200deg);
+        }
+
+        .back {
+            position: absolute;
+            top: 1.6rem;
+            left: 0.3rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: #000000;
+        }
+
+        /* rest body */
+
+        .rest-body {
+            position: absolute;
+            top: 17rem;
+            left: 4.5rem;
+            width: 17rem;
+            height: 12rem;
+        }
+
+        .trunk {
+            position: absolute;
+            top: 0.4rem;
+            left: 4.3rem;
+            width: 8.4rem;
+            height: 5.8rem;
+            border-radius: 0 0 48% 48%;
+            background: #000000;
+        }
+
+        .heart {
+            position: absolute;
+            top: 1.5rem;
+            left: 2.7rem;
+            width: 3rem;
+            height: 2.5rem;
+        }
+
+        .side {
+            position: absolute;
+            width: 1.8rem;
+            height: 2.3rem;
+            background: rgb(221, 1, 1);
+            border-radius: 45% 45% 0 0;
+        }
+
+        .h-left {
+            transform: rotate(-57deg);
+        }
+
+        .h-right {
+            left: 1rem;
+            transform: rotate(57deg);
+        }
+
+        .arm {
+            position: absolute;
+            top: 0.3rem;
+            width: 2.6rem;
+            height: 4rem;
+            background: #000000;
+        }
+
+        .arm__left {
+            left: 2.7rem;
+            transform: rotate(50deg);
+            animation: arm_left 2s linear infinite;
+        }
+
+        .arm__right {
+            right: 2.7rem;
+            transform: rotate(-50deg);
+            animation: arm_right 2s linear infinite;
+        }
+
+        .hand {
+            position: absolute;
+            top: 2.2rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: rgb(221, 1, 1);
+            border-radius: 50%;
+            border: 0.6em solid #000000;
+        }
+
+        .hand_left {
+            left: 0.5rem;
+            animation: hand_left 2s linear infinite;
+        }
+
+        .hand_right {
+            right: 0.5rem;
+            animation: hand_right 2s linear infinite;
+        }
+
+        .leg {
+            position: absolute;
+            top: 5rem;
+            width: 3rem;
+            height: 4.5rem;
+            background: #000000;
+            border-radius: 0 0 45% 45%;
+        }
+
+        .leg_left {
+            left: 5.2rem;
+            transform: rotate(-3deg);
+            animation: walk_leg_left 0.5s linear infinite;
+        }
+
+        .leg_right {
+            right: 5.2rem;
+            transform: rotate(3deg);
+            animation: walk_leg_right 0.5s linear infinite;
+        }
+
+        /* shadow */
+
+        .shadow {
+            position: absolute;
+            bottom: 5.5rem;
+            left: 5.5rem;
+            width: 11rem;
+            height: 2rem;
+            border-radius: 50%;
+            z-index: -1;
+            box-shadow: 2rem 3rem 1rem rgb(126, 126, 126);
+        }
+
+        /* animation */
+
+        @keyframes walk_leg_left {
+
+            0% {
+                height: 4.5rem;
+            }
+
+            50% {
+                height: 4rem;
+            }
+
+            100% {
+                height: 4.5rem;
+            }
+
+        }
+
+        @keyframes walk_leg_right {
+
+            0% {
+                height: 4rem;
+            }
+
+            50% {
+                height: 4.5rem;
+            }
+
+            100% {
+                height: 4rem;
+            }
+
+        }
+
+        @keyframes arm_left {
+
+            0% {
+                transform: rotate(36deg);
+            }
+
+            50% {
+                transform: rotate(50deg);
+            }
+
+            100% {
+                transform: rotate(36deg);
+            }
+        }
+
+        @keyframes arm_right {
+
+            0% {
+                transform: rotate(-50deg);
+            }
+
+            50% {
+                transform: rotate(-36deg);
+            }
+
+            100% {
+                transform: rotate(-50deg);
+            }
+        }
+
+        @keyframes hand_left {
+
+            0% {
+                transform: translateX(0.4rem) translateY(0.4rem);
+            }
+
+            50% {
+                transform: translateX(0) translateY(0);
+            }
+
+            100% {
+                transform: translateX(0.4rem) translateY(0.4rem);
+            }
+        }
+
+        @keyframes hand_right {
+
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-0.4rem) translateY(0.4rem);
+            }
+
+            100% {
+                transform: translateX(0) translateY(0);
+            }
+        }
+
+        @keyframes walk {
+
+            0% {
+                transform: scale(0.2);
+            }
+
+            25% {
+                transform: scale(0.4);
+            }
+
+            50% {
+                transform: scale(0.6);
+            }
+
+            75% {
+                transform: scale(0.8);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+
+        }
+
+
+        @keyframes head_move {
+
+            0% {
+                transform: rotate(0);
+            }
+
+            25% {
+                transform: rotate(2deg);
+            }
+
+            50% {
+                transform: rotate(0);
+            }
+
+            75% {
+                transform: rotate(-2deg);
+            }
+
+            100% {
+                transform: rotate(0);
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="body">
+
+            <div class="head">
+
+                <div class="face">
+                    <div class="eye eye-left">
+                        <div class="eyebrown eyebrown-left">
+                            <div class="eye-tip"></div>
+                        </div>
+                        <div class="pupil"></div>
+                    </div>
+                    <div class="eye eye-right">
+                        <div class="eyebrown eyebrown-right">
+                            <div class="eye-tip"></div>
+                        </div>
+                        <div class="pupil"></div>
+                    </div>
+                    <div class="mouth">
+                        <div class="smile smile-left">
+                            <div class="bord bord-left"></div>
+                            <div class="tooth tooth-left"></div>
+                        </div>
+                        <div class="smile smile-right">
+                            <div class="bord bord-right"></div>
+                            <div class="tooth tooth-right"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hair hair__left">
+                    <div class="league">
+                        <div class="rect-one"></div>
+                        <div class="rect-two"></div>
+                    </div>
+                    <div class="tips_one"></div>
+                    <div class="tips_two"></div>
+                    <div class="tips_three"></div>
+                    <div class="tips_four"></div>
+                    <div class="back"></div>
+                </div>
+
+                <div class="hair hair__right">
+                    <div class="league">
+                        <div class="rect-one"></div>
+                        <div class="rect-two"></div>
+                    </div>
+                    <div class="tips_one"></div>
+                    <div class="tips_two"></div>
+                    <div class="tips_three"></div>
+                    <div class="tips_four"></div>
+                    <div class="back"></div>
+                </div>
+
+            </div>
+
+            <div class="rest-body">
+
+                <div class="trunk">
+                    <div class="heart">
+                        <div class="side h-left"></div>
+                        <div class="side h-right"></div>
+                    </div>
+                </div>
+
+                <div class="arm arm__left"></div>
+                <div class="arm arm__right"></div>
+                <div class="hand hand_left"></div>
+                <div class="hand hand_right"></div>
+                <div class="leg leg_left"></div>
+                <div class="leg leg_right"></div>
+
+            </div>
+
+            <div class="shadow"></div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
